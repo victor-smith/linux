@@ -1,0 +1,67 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+B_ADDR	heartbeat.h	/^	B_ADDR,$/;"	e	enum:e_hb
+COUNT_DONE	pthread/cond1.c	11;"	d	file:
+COUNT_HALT1	pthread/cond1.c	12;"	d	file:
+COUNT_HALT2	pthread/cond1.c	13;"	d	file:
+HB_PORT	heartbeat.h	/^	HB_PORT,$/;"	e	enum:e_hb
+HB_TIMEOUT	heartbeat.h	/^	HB_TIMEOUT,$/;"	e	enum:e_hb
+HB_TRY_TIMES	heartbeat.h	/^    HB_TRY_TIMES,$/;"	e	enum:e_hb
+HB_WELCOME	heartbeat.h	/^	HB_WELCOME$/;"	e	enum:e_hb
+NTHREADS	pthread/join1.c	4;"	d	file:
+P_ADDR	heartbeat.h	/^	P_ADDR,$/;"	e	enum:e_hb
+__CONF_UTIL_H	conf_util.h	2;"	d
+__HEARTBEAT_H__	heartbeat.h	2;"	d
+__SOCKET_H	socket.h	2;"	d
+backup_addr	heartbeat.h	/^	char *backup_addr;\/\/备机的地址$/;"	m	struct:hb_conf
+condition_var	pthread/cond1.c	/^pthread_cond_t  condition_var   = PTHREAD_COND_INITIALIZER;$/;"	v
+conf_file	heartbeat.h	/^static char *conf_file = "hb.conf";$/;"	v
+count	pthread/cond1.c	/^int  count = 0;$/;"	v
+count_mutex	pthread/cond1.c	/^pthread_mutex_t count_mutex     = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+counter	pthread/join1.c	/^int  counter = 0;$/;"	v
+counter	pthread/mutex1.c	/^int  counter = 0;$/;"	v
+counter	pthread/pthread2-no-mutex.c	/^int  counter = 0;$/;"	v
+deal_sig	heartbeat.c	/^void deal_sig(int sig)$/;"	f
+do_work_main	heartbeat.c	/^pthread_t do_work_main( const struct hb_conf *conf)$/;"	f
+do_work_vice	heartbeat.c	/^int do_work_vice( const struct hb_conf *conf)$/;"	f
+e_hb	heartbeat.h	/^enum e_hb$/;"	g
+flag_work	heartbeat.c	/^static char flag_work = 1;$/;"	v	file:
+functionC	pthread/mutex1.c	/^void *functionC()$/;"	f
+functionC	pthread/pthread2-no-mutex.c	/^void *functionC()$/;"	f
+functionCount1	pthread/cond1.c	/^void *functionCount1()$/;"	f
+functionCount2	pthread/cond1.c	/^void *functionCount2()$/;"	f
+getValue	conf_util.c	/^static void getValue(char * keyAndValue, const char **key, int cnt, struct hb_conf *conf){$/;"	f	file:
+hb_conf	heartbeat.h	/^struct hb_conf{$/;"	s
+hb_conf_key	heartbeat.c	/^char* hb_conf_key[] = $/;"	v
+hb_port	heartbeat.h	/^	int hb_port;\/\/监听端口$/;"	m	struct:hb_conf
+hb_timeout	heartbeat.h	/^	int hb_timeout;\/\/超时时间$/;"	m	struct:hb_conf
+listen_work	socket.c	/^void* listen_work(void *conf)$/;"	f
+main	heartbeat.c	/^int main(int argc, char **argv) { $/;"	f
+main	pthread/cond1.c	/^main()$/;"	f
+main	pthread/join1.c	/^main()$/;"	f
+main	pthread/mutex1.c	/^main()$/;"	f
+main	pthread/pthread1.c	/^main()$/;"	f
+main	pthread/pthread2-no-mutex.c	/^main()$/;"	f
+mutex1	pthread/join1.c	/^pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+mutex1	pthread/mutex1.c	/^pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;$/;"	v
+objs	makefile	/^objs=conf_util.o heartbeat.o socket.o$/;"	m
+objs	pthread/makefile	/^objs=pthread1 mutex1 pthread2-no-mutex join1 cond1$/;"	m
+ping_work	socket.c	/^void ping_work(const char * ip, int port, int *ret)$/;"	f
+primary_addr	heartbeat.h	/^	char *primary_addr;\/\/主机的地址$/;"	m	struct:hb_conf
+print_message_function	pthread/pthread1.c	/^void *print_message_function( void *ptr )$/;"	f
+read_conf	conf_util.c	/^int read_conf(const char *filename\/*in*\/, const char **key\/*in*\/, int cnt\/*in*\/, struct hb_conf *conf){$/;"	f
+set_conf	conf_util.c	/^void set_conf(int i, char *val, struct hb_conf *conf)$/;"	f
+set_work_mode	heartbeat.c	/^static void set_work_mode(char *flag_work, struct hb_conf *conf)$/;"	f	file:
+socket_is_primary	socket.c	/^int socket_is_primary(const char* ip)$/;"	f
+str_get_addr	socket.c	/^static int str_get_addr(const char * ip)$/;"	f	file:
+thread_function	pthread/join1.c	/^void *thread_function(void *dummyPtr)$/;"	f
+trim	conf_util.c	/^static void trim(char *strIn, char *strOut){$/;"	f	file:
+try_times	heartbeat.h	/^	int try_times;\/\/尝试次数$/;"	m	struct:hb_conf
+usage	heartbeat.c	/^static void usage()$/;"	f	file:
+welcome	heartbeat.h	/^	char *welcome;\/\/欢迎信息$/;"	m	struct:hb_conf
+write_conf	conf_util.c	/^void write_conf(const char *filename, const struct hb_conf *conf)$/;"	f
+write_pid2file	heartbeat.c	/^void write_pid2file(pid_t pid)$/;"	f
