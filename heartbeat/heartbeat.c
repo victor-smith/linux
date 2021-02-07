@@ -6,7 +6,10 @@
 #include <string.h>
 #include "heartbeat.h"
 
+#define LOGFILE "/root/code/heartbeat/hblog.log"
 pthread_t main_thread = NULL;
+static char *conf_file = "hb.conf";
+static int exit_main = 0;
 
 char* hb_conf_key[] = 
 {
@@ -27,13 +30,13 @@ static char flag_work = 1;
 
 void deal_sig(int sig)
 {
-	//flag_work = 0;
-	if(main_thread)
-		pthread_cancel(main_thread);
 #ifdef DEBUG
 	printf("rcv sig %d %s\n", sig, strsignal(sig));
-	exit(1);
 #endif 
+	info("rcv sig %d %s\n", sig, strsignal(sig));
+	if(main_thread)
+		pthread_cancel(main_thread);
+	exit_main = 1;	
 }
 
 void write_pid2file(pid_t pid)
@@ -41,6 +44,7 @@ void write_pid2file(pid_t pid)
 #ifdef DEBUG
 	printf("process id =%d\n", pid);
 #endif
+	info("process id =%d\n", pid);
 }
 
 // 主机监听备用机
@@ -66,6 +70,7 @@ int do_work_vice( const struct hb_conf *conf)
 #ifdef DEBUG
 			printf("did not recive main controller responses... try times %d\n", try_times);
 #endif
+			info("did not recive main controller responses... try times %d\n", try_times);
 			try_times--;
 		}
 	}
@@ -87,8 +92,10 @@ int main(int argc, char **argv) {
 	pthread_t main_tid;
 	pid_t pid = getpid();
 	write_pid2file(pid);
+	log_init(LOGFILE);
 
 	signal(SIGINT,deal_sig);
+	signal(SIGKILL,deal_sig);
 
 	while((opt=getopt(argc, argv,"f:d"))!=-1)
 	{
@@ -98,7 +105,10 @@ int main(int argc, char **argv) {
 				conf_file = optarg;
 				break;
 			case 'd':
+#ifdef DEBUG
 				printf("program background running\n");
+#endif
+				info("program background running\n");
 				break;
 			default:
 				usage();
@@ -112,6 +122,7 @@ int main(int argc, char **argv) {
 		printf("请检查配置文件\n");
 		exit(1);
 #endif
+		error("read %s configuration failed!\n", conf_file);
 	}
 #ifdef DEBUG
 	printf("conf info: %s,%s,%d,%d,%d,%s\n",
@@ -122,6 +133,13 @@ int main(int argc, char **argv) {
 				conf.try_times,
 				conf.welcome);
 #endif
+	info("conf info: %s,%s,%d,%d,%d,%s\n",
+				conf.primary_addr,
+				conf.backup_addr,
+				conf.hb_port,
+				conf.hb_timeout,
+				conf.try_times,
+				conf.welcome);
 	//2. 启动模式（主or备）
 	set_work_mode(&flag_work, &conf);
 	//2.1 主 接受备用机器的ping并作回复，接收到信号后停止socket
@@ -137,6 +155,7 @@ int main(int argc, char **argv) {
 #ifdef DEBUG
 		  printf("vice controller to work as main...\n");
 #endif
+		  info("vice controller to work as main...\n");
 		  flag_work = 1;
 		}
 	}
@@ -147,7 +166,12 @@ int main(int argc, char **argv) {
 #ifdef DEBUG
 		printf("do while work, working in main? %s\n", flag_work?"Yes":"No");
 #endif
+		info("do while work, working in main? %s\n", flag_work?"Yes":"No");
+
+		if(exit_main)
+			break;
 	}
+	log_fini();
 
 	return 0;
 }

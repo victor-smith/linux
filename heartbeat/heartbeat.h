@@ -6,8 +6,8 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "socket.h"
-
-static char *conf_file = "hb.conf";
+#include "log_util.h"
+//#include "conf_util.h"
 
 enum e_hb
 {
